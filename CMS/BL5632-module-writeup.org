@@ -1,0 +1,86 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:2 \n:nil ^:nil arch:headline
+#+BIND:   gtk/org-latex-export-caption-num t
+#+OPTIONS: author:t c:nil creator:nil :(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:0 p:nil pri:nil prop:nil
+#+OPTIONS: stat:t tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+TITLE: @@latex:{\HUGE \BL5632}\\@@ Genomic Data Science in the Cloud
+#+SUBTITLE: \AY2022-2023
+#+DATE: 
+#+AUTHOR:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_CMD: pdflatex
+#+LATEX_COMPILER: pdflatex
+#+LATEX_CLASS: memoir-article
+#+LATEX_CLASS_OPTIONS: [12pt,article,oneside,a4paper,x11names]
+#+LATEX_HEADER: \usepackage{tabulary} \let\mathcal\undefined \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}\usepackage[]{MinionPro}
+#+LATEX_HEADER_EXTRA: \usepackage{geometry} \usepackage{rotating} \geometry{top=1in,bottom=1in,left=1in,right=1in}
+#+LATEX_HEADER: \usepackage{caption}\captionsetup[table]{font=normalsize,textfont=bf}
+#+LATEX_HEADER: \newcommand{\AY}{\textsc{ay}}  \newcommand{\BL}{\textsc{bl}} \renewcommand{\S}{\textsc{s}} \newcommand{\Q}{\textsc{q}}\newcommand{\PS}{\textsc{ps}} \newcommand{\GTK}{\textsc{gtk}} \newcommand{\AJJ}{\textsc{ajj}}
+#+LATEX_HEADER: \usepackage{lastpage} \usepackage{gitinfo2} \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{multirow} \setlength{\headheight}{15pt}
+#+LATEX_HEADER: %\pagestyle{fancy} \lfoot{\tiny{\texttt{git commit \gitAbbrevHash~\gitAuthorDate}}} \cfoot{} \rfoot{page \thepage\ of \pageref{LastPage}} \renewcommand{\headrulewidth}{0pt} \lhead{} \chead{} \rhead{}
+#+LATEX_HEADER: \makepagestyle{gtk} \makeoddfoot{gtk}{ \footnotesize{\texttt{git commit \gitAbbrevHash~\gitAuthorDate}}}{}{\thepage}\pagestyle{gtk}
+
+#+LATEX_HEADER: \hypersetup{hidelinks}
+
+
+ @@latex: \tbfigures{@@
+
+#+ATTR_LATEX: :booktabs no :placement [H] :align LL :environment tabulary :width \textwidth
+| Lecturer | Prof. Greg TUCKER-KELLOGG (GTK) dbsgtk@nus.edu.sg |
+| Lecturer | Dr. Ah-Jung JEON (AJJ) ajjeon@nus.edu.sg          |
+|----------+---------------------------------------------------|
+| Schedule | Mondays, 6-8PM, Wednesdays, 6-8PM, S13-M-08       |
+| Format   | hybrid learning                                   |
+
+ @@latex:  }@@
+
+
+* Basic information
+
+Genomic data is the fastest growing source of data in the world. Genomic data sets are huge, and computational analysis can create a sudden demand for large computers, large amounts of memory, and large storage. Increasingly, genomic data analysis is being done on cloud-based infrastructure such as Amazon Web Services, Google Cloud, or Microsoft Azure. In addition, computing pipelines often take advantage of containerisation systems such as Docker or Singularity.
+
+\BL5632 will develop skills for genomic data analysis in biotechnology on the cloud, teaching skills based on the Amazon Web Services framework. Students are expected to be familiar with genomic data and downstream analysis at the level taught in \BL5631, Practical Analysis of Genomic Data using R. Prior experience using the Linux command line is helpful, but not required.
+
+The module begins with an bootcamp for students unfamiliar with the Linux operating system and the bash command line. 
+
+
+
+* Logistics
+
+#+CAPTION:  Module assessment
+#+ATTR_LATEX: :booktabs yes :placement [H] :align lLrrr :environment tabulary :width \textwidth
+| Component    | Description            | $n$ |  % | $\sum$ |
+|--------------+------------------------+-----+----+-----|
+| Problem sets | Take-home project work |   2 | 30 |  60 |
+| Quizzes      | Quizzes                |   4 | 10 |  40 |
+|--------------+------------------------+-----+----+-----|
+| Total        |                        |     |    | 100 |
+
+In addition to synchronous learning activities, /asynchronous/ learning activities will include required videos and readings.
+
+#+caption: Weekly timetable
+#+ATTR_LATEX: :booktabs yes :placement [p] :align |r|r|L|c| :environment tabulary :width \textwidth
+| *Week* | *Date*             | *Lecture/Practicals*                                                         | *Assessments* |
+|------+------------------+----------------------------------------------------------------------------+-------------|
+|    1 | 9 and 11 Jan     | Linux bootcamp 1: command line power                                       |             |
+|    2 | 16 and 18 Jan    | Linux bootcamp 2  automation                                               |             |
+|    3 | 25 Jan           | Introduction to AWS                                                        | \Q1         |
+|    4 | 20 Jan, 01 Feb   | Workflow systems: Snakemake                                                |             |
+|    5 | 06 and 08 Feb    | Containers: hardware-independent computing                                 |             |
+|    6 | 13 and 15 Feb    | Snakemake workflows for bioinformatics                                     | \Q2         |
+|      |                  | /Recess week/                                                                |             |
+|    7 | 27 Feb, 01 March | Nextflow 1 ; introduction to EC2 and S3                                    | \PS1        |
+|    8 | 06 and 08 March  | Nextflow 2 ; running Nextflow on AWS                                       |             |
+|    9 | 13 and 15 March  | Using public genomic data on AWS                                           | \Q3         |
+|   10 | 20 and 22 March  | AWS policies and security; towards big data                                |             |
+|   11 | 27 and 29 March  | AWS Batch: scaling computing and storage services for genomics             | \PS2        |
+|   12 | 03 and 05 April  | Cost modeling: how to do cloud-based data science without busting the bank |             |
+|   13 | 10 and 12 April  | Staying on the cloud from vendor to publication                            | \Q4         |
+|------+------------------+----------------------------------------------------------------------------+-------------|
+
+
