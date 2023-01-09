@@ -67,7 +67,7 @@ In addition to synchronous learning activities, /asynchronous/ learning activiti
 #+ATTR_LATEX: :booktabs yes :placement [p] :align |r|r|L|c| :environment tabulary :width \textwidth
 | *Week* | *Date*             | *Lecture/Practicals*                                                         | *Assessments* |
 |------+------------------+----------------------------------------------------------------------------+-------------|
-|    1 | 9 and 11 Jan     | Linux bootcamp 1: command line power                                       |             |
+|    1 | 9 and 11 Jan     | Linux bootcamp 1: command line power and NGS data                          |             |
 |    2 | 16 and 18 Jan    | Linux bootcamp 2  automation                                               |             |
 |    3 | 25 Jan           | Introduction to AWS                                                        | \Q1         |
 |    4 | 20 Jan, 01 Feb   | Workflow systems: Snakemake                                                |             |
