@@ -1,3 +1,7 @@
+
+def prepare_tool_indices = ["bowtie2"]
+
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
@@ -7,8 +11,8 @@
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nf_lenski_pipeline'
-include { FASTQC_TRIMGALORE      } from "../subworkflows/local/fastqc_trimgalore"
-
+include { FASTQC_TRIMGALORE      } from '../subworkflows/local/fastqc_trimgalore'
+include { PREPARE_GENOME         } from '../subworkflows/local/prepare_genome'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -39,9 +43,10 @@ workflow LENSKI {
                 }
         }
         .set { ch_fastq }
+
+    PREPARE_GENOME(prepare_tool_indices)
         
-    
-     if(params.run_trim_galore_fastqc) {
+    if(params.run_trim_galore_fastqc) {
         FASTQC_TRIMGALORE (
             ch_fastq,
             params.skip_fastqc,

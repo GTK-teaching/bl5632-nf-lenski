@@ -23,8 +23,16 @@ Decided to see if a FASTQC_TRIMGALORE subworkflow (from cutandrun) would work.
 
 This seems to work, and makes for another good tag point.
 
-## TAG: 01-TrimGalore
+# TAG: 01-TrimGalore
 
 If you check out this tag you should be able to run with `nextflow run main.nf --input data/samplesheet.csv --outdir results`
 - This version should place the trimmed results and fastqc results into the outdir.
 - This version records software versions.
+
+# TAG: 02-Bowtie2_index
+
+I still needed to build the genome index (both botwie2 and faidx, so I cobbled together a PREPARE_GENOME subworkflow based on one of the nf-core pipelines.  Not sure why the bowtie2/build module from nf-core uses process-high, so I changed it to process-medium.
+
+Should be runnable with 
+
+    nextflow run main.nf --input data/samplesheet.csv --outdir results/ --fasta data/genome/ecoli_rel606.fasta
