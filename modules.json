@@ -1,0 +1,27 @@
+{
+  "name": "nf-core/lenski",
+  "homePage": "https://github.com/nf-core/lenski",
+  "repos": {
+    "https://github.com/nf-core/modules.git": {
+      "modules": {
+        "nf-core": {
+          "bowtie2/build": {
+            "branch": "master",
+            "git_sha": "1fea64f5132a813ec97c1c6d3a74e0aee7142b6d",
+            "installed_by": ["modules"]
+          },
+          "fastqc": {
+            "branch": "master",
+            "git_sha": "285a50500f9e02578d90b3ce6382ea3c30216acd",
+            "installed_by": ["modules"]
+          },
+          "trimgalore": {
+            "branch": "master",
+            "git_sha": "a98418419ae6c9df3cf6cf108d1e1aba71037d5a",
+            "installed_by": ["modules"]
+          }
+        }
+      }
+    }
+  }
+}

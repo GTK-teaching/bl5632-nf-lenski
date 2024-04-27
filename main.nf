@@ -14,7 +14,7 @@ nextflow.enable.dsl = 2
 
 include { validateParameters; paramsHelp; paramsSummaryLog; samplesheetToList } from 'plugin/nf-schema'
 
-//include { LENSKI  } from './workflows/lenski'
+include { LENSKI  } from './workflows/lenski'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,22 +32,14 @@ workflow GDA_LENSKI {
 
     main:
 
-    samplesheet
-    .map { meta, fastq_1, fastq_2 -> 
-        if (!fastq_2) {
-            return [ meta + [ single_end:true ], [ fastq_1 ] ]
-        } else {
-            return [ meta + [ single_end:false ], [ fastq_1, fastq_2 ] ]
-        }
-    }
-    .view()
+ 
 
+     // WORKFLOW: Run pipeline
     //
-    // WORKFLOW: Run pipeline
-    //
-    //LENSKI (
-    //    samplesheet
-    //)
+    
+    LENSKI (
+        samplesheet
+    )
 
 }
 /*
