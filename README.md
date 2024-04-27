@@ -13,7 +13,7 @@
 
 # TAG: 00-Skeleton
 
-- This should run with `nextflow run main.nf -profile awsbatch --input data/samplesheet.csv`
+- This should run with `nextflow run main.nf --input data/samplesheet.csv --outdir results`
 - The result should be just the channel containing the example files
 
 
@@ -23,8 +23,8 @@ Decided to see if a FASTQC_TRIMGALORE subworkflow (from cutandrun) would work.
 
 This seems to work, and makes for another good tag point.
 
-## tag 01-TrimGalore
+## TAG: 01-TrimGalore
 
-If you check out this tag you should be able to run with `nextflow run main.nf -profile awsbatch --input data/samplesheet.csv``
+If you check out this tag you should be able to run with `nextflow run main.nf --input data/samplesheet.csv --outdir results`
 - This version should place the trimmed results and fastqc results into the outdir.
 - This version records software versions.
