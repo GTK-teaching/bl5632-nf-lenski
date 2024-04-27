@@ -1,0 +1,5 @@
+"sample","fastq_1","fastq_2"
+"SRX040608","./data/fastq/SRX040608_SRR097977.fastq.gz",""
+"SRX040663","./data/fastq/SRX040663_SRR098026.fastq.gz",""
+"SRX3288938","./data/fastq/SRX3288938_SRR6178292_1.fastq.gz","./data/fastq/SRX3288938_SRR6178292_2.fastq.gz"
+"SRX3288939","./data/fastq/SRX3288939_SRR6178291_1.fastq.gz","./data/fastq/SRX3288939_SRR6178291_2.fastq.gz"
