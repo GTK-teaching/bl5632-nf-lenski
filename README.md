@@ -36,3 +36,11 @@ I still needed to build the genome index (both botwie2 and faidx, so I cobbled t
 Should be runnable with 
 
     nextflow run main.nf --input data/samplesheet.csv --outdir results/ --fasta data/genome/ecoli_rel606.fasta
+
+# TAG: 03-bowtie
+
+This runs bowtie and samtools. It took a bit of work to realise that the bowtie index needed to be a value Channel, not a queue channel, so I could re-use it.
+
+Should be runnable with 
+
+    nextflow run main.nf --input data/samplesheet.csv --outdir results/ --fasta data/genome/ecoli_rel606.fasta

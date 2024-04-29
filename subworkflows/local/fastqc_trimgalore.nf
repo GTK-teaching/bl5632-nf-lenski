@@ -25,6 +25,11 @@ workflow FASTQC_TRIMGALORE {
     trim_html  = Channel.empty()
     trim_zip   = Channel.empty()
     trim_log   = Channel.empty()
+
+
+
+
+
     ch_output_reads = reads
     if (!skip_trimming) {
         TRIMGALORE (

@@ -13,6 +13,8 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nf_lenski_pipeline'
 include { FASTQC_TRIMGALORE      } from '../subworkflows/local/fastqc_trimgalore'
 include { PREPARE_GENOME         } from '../subworkflows/local/prepare_genome'
+include { BOWTIE2_ALIGN          } from "../modules/nf-core/bowtie2/align/main"
+include { BAM_SORT_STATS_SAMTOOLS  } from '../subworkflows/nf-core/bam_sort_stats_samtools/main'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -31,6 +33,8 @@ workflow LENSKI {
     main:
 
     ch_multiqc_files = Channel.empty()
+    ch_fasta = Channel.from(file(params.fasta)).map { row -> [[id:"fasta"], row] }
+    ch_fasta.view()
 
 /* Read in samplesheet */
     ch_samplesheet
@@ -45,6 +49,14 @@ workflow LENSKI {
         .set { ch_fastq }
 
     PREPARE_GENOME(prepare_tool_indices)
+    ch_software_versions = ch_software_versions.mix(PREPARE_GENOME.out.versions)
+    ch_fasta = PREPARE_GENOME.out.fasta.first()
+    ch_bt2_index = PREPARE_GENOME.out.bowtie2_index.first()
+    ch_fasta_index = PREPARE_GENOME.out.fasta_index  
+    
+    ch_trimmed_reads = Channel.empty()
+
+    ch_fastq.view()
         
     if(params.run_trim_galore_fastqc) {
         FASTQC_TRIMGALORE (
@@ -54,9 +66,31 @@ workflow LENSKI {
         )
         ch_trimmed_reads     = FASTQC_TRIMGALORE.out.reads
         ch_software_versions = ch_software_versions.mix(FASTQC_TRIMGALORE.out.versions)
-
-        ch_trimmed_reads.view()
     }
+
+ch_trimmed_reads.view()
+ch_bt2_index.view()
+ch_fasta_index.view()
+
+
+BOWTIE2_ALIGN(
+    ch_trimmed_reads,
+    ch_bt2_index,
+    ch_fasta,
+    false,
+    false)
+
+ch_software_versions = ch_software_versions.mix(BOWTIE2_ALIGN.out.versions)
+
+BAM_SORT_STATS_SAMTOOLS(
+    BOWTIE2_ALIGN.out.bam,
+    ch_fasta)
+
+ch_software_versions = ch_software_versions.mix(BAM_SORT_STATS_SAMTOOLS.out.versions)
+
+
+
+
 
     
     // Collate and save software versions
