@@ -15,6 +15,7 @@ include { FASTQC_TRIMGALORE      } from '../subworkflows/local/fastqc_trimgalore
 include { PREPARE_GENOME         } from '../subworkflows/local/prepare_genome'
 include { BOWTIE2_ALIGN          } from "../modules/nf-core/bowtie2/align/main"
 include { BAM_SORT_STATS_SAMTOOLS  } from '../subworkflows/nf-core/bam_sort_stats_samtools/main'
+include { BCF_PILEUP_CALL        } from '../subworkflows/local/bcf_pileup_call'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -34,7 +35,6 @@ workflow LENSKI {
 
     ch_multiqc_files = Channel.empty()
     ch_fasta = Channel.from(file(params.fasta)).map { row -> [[id:"fasta"], row] }
-    ch_fasta.view()
 
 /* Read in samplesheet */
     ch_samplesheet
@@ -56,9 +56,7 @@ workflow LENSKI {
     
     ch_trimmed_reads = Channel.empty()
 
-    ch_fastq.view()
-        
-    if(params.run_trim_galore_fastqc) {
+    if((!params.skip_fastqc) || (!params.skip_trimming)) {
         FASTQC_TRIMGALORE (
             ch_fastq,
             params.skip_fastqc,
@@ -67,10 +65,6 @@ workflow LENSKI {
         ch_trimmed_reads     = FASTQC_TRIMGALORE.out.reads
         ch_software_versions = ch_software_versions.mix(FASTQC_TRIMGALORE.out.versions)
     }
-
-ch_trimmed_reads.view()
-ch_bt2_index.view()
-ch_fasta_index.view()
 
 
 BOWTIE2_ALIGN(
@@ -87,7 +81,13 @@ BAM_SORT_STATS_SAMTOOLS(
     ch_fasta)
 
 ch_software_versions = ch_software_versions.mix(BAM_SORT_STATS_SAMTOOLS.out.versions)
+ch_sorted_bam = BAM_SORT_STATS_SAMTOOLS.out.bam
 
+BCF_PILEUP_CALL(
+    ch_sorted_bam,
+    ch_fasta)
+    
+ch_software_versions = ch_software_versions.mix(BCF_PILEUP_CALL.out.versions)
 
 
 

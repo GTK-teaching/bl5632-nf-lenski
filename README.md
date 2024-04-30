@@ -44,3 +44,6 @@ This runs bowtie and samtools. It took a bit of work to realise that the bowtie 
 Should be runnable with 
 
     nextflow run main.nf --input data/samplesheet.csv --outdir results/ --fasta data/genome/ecoli_rel606.fasta
+
+# Tag: 04-bcftools
+
