@@ -16,6 +16,8 @@ include { PREPARE_GENOME         } from '../subworkflows/local/prepare_genome'
 include { BOWTIE2_ALIGN          } from "../modules/nf-core/bowtie2/align/main"
 include { BAM_SORT_STATS_SAMTOOLS  } from '../subworkflows/nf-core/bam_sort_stats_samtools/main'
 include { BCF_PILEUP_CALL        } from '../subworkflows/local/bcf_pileup_call'
+
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW

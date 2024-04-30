@@ -11,7 +11,6 @@ workflow BCF_PILEUP_CALL {
 
     main:
 
-    log.info(params.save_mpileup)
     ch_versions      = Channel.empty()
 
     BCFTOOLS_MPILEUP(
@@ -24,7 +23,7 @@ workflow BCF_PILEUP_CALL {
 
     emit:
     vcf         = BCFTOOLS_MPILEUP.out.vcf
-    mpileup     = BCFTOOLS_MPILEUP.out.mpileup //optional: true
+    mpileup     = BCFTOOLS_MPILEUP.out.mpileup
     versions    = ch_versions                 // channel: [ versions.yml ]
 
 }
