@@ -45,5 +45,11 @@ Should be runnable with
 
     nextflow run main.nf --input data/samplesheet.csv --outdir results/ --fasta data/genome/ecoli_rel606.fasta
 
-# Tag: 04-bcftools
+# Tag: 04-VCF
+
+The final VCF files should go into results/03_vcf/vcf.
+
+I used a slightly different method for the vinal varian calling, but the basic idea is the same.
+
+The final pipeline can be run with `bash s3-run.sh`. Please change your group name before running.
 
